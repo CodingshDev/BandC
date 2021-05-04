@@ -2,6 +2,13 @@ import "hardhat-typechain";
 require("ts-node/register");
 require("@nomiclabs/hardhat-truffle5");
 require("@nomiclabs/hardhat-ethers");
+require("@nomiclabs/hardhat-etherscan");
+
+import { task } from "hardhat/config"
+import { promises as fs } from 'fs'
+import { ethers } from 'ethers'
+
+require('dotenv').config()
 
 // You have to export an object to set up your config
 // This object can have the following optional entries:
@@ -118,6 +125,60 @@ export default {
           balance: "100000000000000000000000000000000",
         },
       ],
+    },
+    ropsten: {
+      url: "https://ropsten.infura.io/v3/" + process.env.INFURA_ID,
+      chainId: 3,
+      gasPrice: 20000000000,
+      // accounts: {mnemonic: mnemonic}
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    rinkeby: {
+      url: "https://rinkeby.infura.io/v3/" + process.env.INFURA_ID,
+      chainId: 4,
+      gasPrice: 20000000000,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    goerli: {
+      url: "https://goerli.infura.io/v3/" + process.env.INFURA_ID,
+      chainId: 5,
+      gasPrice: 20000000000,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    kovan: {
+      url: "https://kovan.infura.io/v3/" + process.env.INFURA_ID,
+      chainId: 42,
+      gasPrice: 20000000000,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    bsc: {
+      url: "https://bsc-dataseed.binance.org/",
+      chainId: 56,
+      gasPrice: 1000000000,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    bsctestnet: {
+      url: "https://data-seed-prebsc-2-s3.binance.org:8545/",
+      chainId: 97,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    poa: {
+      url: "https://core.poanetwork.dev",
+      chainId: 99,
+      gasPrice: 1000000000,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    poasokol: {
+      url: "https://sokol.poa.network",
+      chainId: 77,
+      gasPrice: 20000000000,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    xdai: {
+      url: "https://dai.poa.network/",
+      chainId: 100,
+      gasPrice: 1000000000,
+      accounts: [process.env.PRIVATE_KEY],
     },
     localhost: { url: "http://localhost:8545" },
   },
